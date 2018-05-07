@@ -8,7 +8,7 @@ import {
 
 // By importing just the rxjs operators we need, We're theoretically able
 // to reduce our build size vs. importing all of them.
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';

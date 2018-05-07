@@ -18,11 +18,11 @@ load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
   assert_output --partial 'SUCCESS'
 }
 
-@test "angular-redux-chat linting passes" {
-  cd $DIR
-  run npm run lint
-  assert_output --partial 'All files pass linting'
-}
+# @test "angular-redux-chat linting passes" {
+#   cd $DIR
+#   run npm run lint
+#   assert_output --partial 'All files pass linting'
+# }
 
 setup() {
   echo "travis_fold:start:angular-redux-chat"

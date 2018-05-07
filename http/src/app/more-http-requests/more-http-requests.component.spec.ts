@@ -4,81 +4,94 @@ import {
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
+
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import {
-  Http,
-  ConnectionBackend,
-  BaseRequestOptions,
-  Response,
-  RequestMethod,
-} from '@angular/http';
+  HttpTestingController,
+  HttpClientTestingModule
+} from '@angular/common/http/testing';
 
 import { MoreHttpRequestsComponent } from './more-http-requests.component';
 
 describe('MoreHttpRequestsComponent', () => {
   let component: MoreHttpRequestsComponent;
   let fixture: ComponentFixture<MoreHttpRequestsComponent>;
-  let backend: MockBackend;
+  let httpMock: HttpTestingController;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MoreHttpRequestsComponent ],
-      providers: [
-        BaseRequestOptions,
-        MockBackend,
-        { provide: Http,
-          useFactory: (connectionBackend: ConnectionBackend,
-                       defaultOptions: BaseRequestOptions) => {
-                         return new Http(connectionBackend, defaultOptions);
-                       },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [MoreHttpRequestsComponent],
+        imports: [HttpClientTestingModule]
+      });
     })
-    .compileComponents();
-  }));
+  );
 
-  beforeEach(async(inject([MockBackend], (mockBackend) => {
-    fixture = TestBed.createComponent(MoreHttpRequestsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    backend = mockBackend;
-  })));
+  beforeEach(
+    async(
+      inject([HttpTestingController], _httpMock => {
+        fixture = TestBed.createComponent(MoreHttpRequestsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+        httpMock = _httpMock;
+      })
+    )
+  );
 
-  it('performs a POST', async(() => {
-    backend.connections.subscribe(c => {
-      expect(c.request.url)
-      .toBe('http://jsonplaceholder.typicode.com/posts');
-      expect(c.request.method).toBe(RequestMethod.Post);
-      c.mockRespond(new Response(<any>{body: '{"response": "OK"}'}));
-    });
-    component.makePost();
-    expect(component.data).toEqual({'response': 'OK'});
-  }));
+  afterEach(
+    inject([HttpTestingController], (httpMock: HttpTestingController) => {
+      httpMock.verify();
+    })
+  );
 
-  it('performs a DELETE', async(() => {
-    backend.connections.subscribe(c => {
-      expect(c.request.url)
-      .toBe('http://jsonplaceholder.typicode.com/posts/1');
-      expect(c.request.method).toBe(RequestMethod.Delete);
-      c.mockRespond(new Response(<any>{body: '{"response": "OK"}'}));
-    });
+  it(
+    'performs a POST',
+    async(() => {
+      component.makePost();
 
-    component.makeDelete();
-    expect(component.data).toEqual({'response': 'OK'});
-  }));
+      const req = httpMock.expectOne(
+        'https://jsonplaceholder.typicode.com/posts'
+      );
+      expect(req.request.method).toEqual('POST');
+      req.flush({ response: 'OK' });
+      expect(component.data).toEqual({ response: 'OK' });
 
-  it('sends correct headers', async(() => {
-    backend.connections.subscribe(c => {
-      expect(c.request.url)
-      .toBe('http://jsonplaceholder.typicode.com/posts/1');
-      expect(c.request.headers.has('X-API-TOKEN')).toBeTruthy();
-      expect(c.request.headers.get('X-API-TOKEN')).toEqual('ng-book');
-      c.mockRespond(new Response(<any>{body: '{"response": "OK"}'}));
-    });
+      httpMock.verify();
+    })
+  );
 
-    component.makeHeaders();
-    expect(component.data).toEqual({'response': 'OK'});
-  }));
+  it(
+    'performs a DELETE',
+    async(() => {
+      component.makeDelete();
 
+      const req = httpMock.expectOne(
+        'https://jsonplaceholder.typicode.com/posts/1'
+      );
+
+      expect(req.request.method).toEqual('DELETE');
+      req.flush({ response: 'OK' });
+      expect(component.data).toEqual({ response: 'OK' });
+
+      httpMock.verify();
+    })
+  );
+
+  it(
+    'sends correct headers',
+    async(() => {
+      component.makeHeaders();
+
+      const req = httpMock.expectOne(
+        req =>
+          req.headers.has('X-API-TOKEN') &&
+          req.headers.get('X-API-TOKEN') == 'ng-book'
+      );
+
+      req.flush({ response: 'OK' });
+      expect(component.data).toEqual({ response: 'OK' });
+
+      httpMock.verify();
+    })
+  );
 });

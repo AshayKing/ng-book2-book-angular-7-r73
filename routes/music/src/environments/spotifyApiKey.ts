@@ -1,2 +1,1 @@
-// this file should be auto-generated when you run `npm start`
-export const SpotifyAPIKey = 'Run npm start to generate this -- SEE DOCS';
+export const SpotifyAPIKey = 'BQBB-kLnibXFvQ04OeBi1pAxYY-MVWQ-Wz0m4X20uDliYan9Ljxj-DwmkMklcC4th8x-EXlEh3NVGj4A7AI';

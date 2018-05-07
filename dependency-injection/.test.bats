@@ -5,15 +5,15 @@ load "${NGBOOK_ROOT}/scripts/bats/fullstack.bats"
 load "${NGBOOK_ROOT}/scripts/bats-support/load.bash"
 load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
 
-@test "dependency-injection is linted" {
-  cd $DIR
-  run npm run lint
-  assert_output --partial 'All files pass linting'
-}
+# @test "dependency-injection is linted" {
+#   cd $DIR
+#   run npm run lint
+#   assert_output --partial 'All files pass linting'
+# }
 
 @test "dependency-injection unit tests pass" {
   cd $DIR
-  run ng test --single-run
+  run ng test
   assert_output --partial 'SUCCESS'
 }
 

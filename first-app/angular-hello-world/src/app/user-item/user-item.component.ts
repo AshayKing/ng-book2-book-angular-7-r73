@@ -1,7 +1,7 @@
 import {
   Component,
   OnInit,
-  Input      // <--- added this
+  Input // <--- added this
 } from '@angular/core';
 
 @Component({
@@ -16,7 +16,5 @@ export class UserItemComponent implements OnInit {
     // removed setting name
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Http,
-  Response,
-  RequestOptions,
-  Headers
-} from '@angular/http';
+  HttpClient,
+  HttpRequest,
+  HttpHeaders
+} from '@angular/common/http';
 
 @Component({
   selector: 'app-more-http-requests',
@@ -14,46 +13,52 @@ export class MoreHttpRequestsComponent implements OnInit {
   data: Object;
   loading: boolean;
 
-  constructor(private http: Http) {
-  }
+  constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   makePost(): void {
     this.loading = true;
-    this.http.post(
-      'http://jsonplaceholder.typicode.com/posts',
-      JSON.stringify({
-        body: 'bar',
-        title: 'foo',
-        userId: 1
-      }))
-      .subscribe((res: Response) => {
-        this.data = res.json();
+    this.http
+      .post(
+        'https://jsonplaceholder.typicode.com/posts',
+        JSON.stringify({
+          body: 'bar',
+          title: 'foo',
+          userId: 1
+        })
+      )
+      .subscribe(data => {
+        this.data = data;
         this.loading = false;
       });
   }
 
   makeDelete(): void {
     this.loading = true;
-    this.http.delete('http://jsonplaceholder.typicode.com/posts/1')
-      .subscribe((res: Response) => {
-        this.data = res.json();
+    this.http
+      .delete('https://jsonplaceholder.typicode.com/posts/1')
+      .subscribe(data => {
+        this.data = data;
         this.loading = false;
       });
   }
 
   makeHeaders(): void {
-    const headers: Headers = new Headers();
-    headers.append('X-API-TOKEN', 'ng-book');
+    const headers: HttpHeaders = new HttpHeaders({
+      'X-API-TOKEN': 'ng-book'
+    });
 
-    const opts: RequestOptions = new RequestOptions();
-    opts.headers = headers;
+    const req = new HttpRequest(
+      'GET',
+      'https://jsonplaceholder.typicode.com/posts/1',
+      {
+        headers: headers
+      }
+    );
 
-    this.http.get('http://jsonplaceholder.typicode.com/posts/1', opts)
-      .subscribe((res: Response) => {
-        this.data = res.json();
-      });
+    this.http.request(req).subscribe(data => {
+      this.data = data['body'];
+    });
   }
 }

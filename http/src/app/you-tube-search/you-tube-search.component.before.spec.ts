@@ -6,13 +6,12 @@ import {
   TestBed,
   tick
 } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
+
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import {
-  Http,
-  ConnectionBackend,
-  BaseRequestOptions,
-  Response
-} from '@angular/http';
+  HttpTestingController,
+  HttpClientTestingModule
+} from '@angular/common/http/testing';
 
 import { YouTubeSearchComponent } from './you-tube-search.component';
 import { SearchResultComponent } from './search-result.component';
@@ -27,28 +26,23 @@ describe('YouTubeSearchComponent (before)', () => {
   let component: YouTubeSearchComponent;
   let fixture: ComponentFixture<YouTubeSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        YouTubeSearchComponent,
-        SearchResultComponent,
-        SearchBoxComponent
-      ],
-      providers: [
-        YouTubeSearchService,
-        BaseRequestOptions,
-        MockBackend,
-        { provide: YOUTUBE_API_KEY, useValue: 'YOUTUBE_API_KEY' },
-        { provide: YOUTUBE_API_URL, useValue: 'YOUTUBE_API_URL' },
-        { provide: Http,
-          useFactory: (backend: ConnectionBackend,
-                       defaultOptions: BaseRequestOptions) => {
-                         return new Http(backend, defaultOptions);
-                       }, deps: [MockBackend, BaseRequestOptions] }
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          YouTubeSearchComponent,
+          SearchResultComponent,
+          SearchBoxComponent
+        ],
+        imports: [HttpClientTestingModule],
+        providers: [
+          YouTubeSearchService,
+          { provide: YOUTUBE_API_KEY, useValue: 'YOUTUBE_API_KEY' },
+          { provide: YOUTUBE_API_URL, useValue: 'YOUTUBE_API_URL' }
+        ]
+      });
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(YouTubeSearchComponent);
@@ -57,42 +51,44 @@ describe('YouTubeSearchComponent (before)', () => {
   });
 
   describe('search', () => {
-    it('parses YouTube response',
-      inject([YouTubeSearchService, MockBackend],
-        fakeAsync((service, backend) => {
-        let res;
+    it(
+      'parses YouTube response',
+      inject(
+        [YouTubeSearchService, HttpTestingController],
+        fakeAsync((service, httpMock) => {
+          let res;
 
-        backend.connections.subscribe(c => {
-          c.mockRespond(new Response(<any>{
-            body: `
-            {
-              "items": [
-                {
-                  "id": { "videoId": "VIDEO_ID" },
-                  "snippet": {
-                    "title": "TITLE",
-                    "description": "DESCRIPTION",
-                    "thumbnails": {
-                      "high": { "url": "THUMBNAIL_URL" }
-                    }
+          service.search('hey').subscribe(_res => {
+            res = _res;
+          });
+
+          const req = httpMock.expectOne({ method: 'GET' });
+          req.flush({
+            items: [
+              {
+                id: { videoId: 'VIDEO_ID' },
+                snippet: {
+                  title: 'TITLE',
+                  description: 'DESCRIPTION',
+                  thumbnails: {
+                    high: { url: 'THUMBNAIL_URL' }
                   }
                 }
-              ]
-            }`
-          }));
-        });
+              }
+            ]
+          });
 
-        service.search('hey').subscribe(_res => {
-          res = _res;
-        });
-        tick();
+          tick();
 
-        const video = res[0];
-        expect(video.id).toEqual('VIDEO_ID');
-        expect(video.title).toEqual('TITLE');
-        expect(video.description).toEqual('DESCRIPTION');
-        expect(video.thumbnailUrl).toEqual('THUMBNAIL_URL');
-      }))
+          const video = res[0];
+          expect(video.id).toEqual('VIDEO_ID');
+          expect(video.title).toEqual('TITLE');
+          expect(video.description).toEqual('DESCRIPTION');
+          expect(video.thumbnailUrl).toEqual('THUMBNAIL_URL');
+
+          httpMock.verify();
+        })
+      )
     );
   });
 });

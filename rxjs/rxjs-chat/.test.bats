@@ -7,7 +7,7 @@ load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
 
 @test "angular-rxjs-chat unit tests pass" {
  cd $DIR
- run ng test --single-run
+ run ng test
  assert_output --partial 'SUCCESS'
 }
 
@@ -18,11 +18,11 @@ load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
   assert_output --partial 'SUCCESS'
 }
 
-@test "angular-rxjs-chat linting passes" {
-  cd $DIR
-  run npm run lint
-  assert_output --partial 'All files pass linting'
-}
+# @test "angular-rxjs-chat linting passes" {
+#   cd $DIR
+#   run npm run lint
+#   assert_output --partial 'All files pass linting'
+# }
 
 setup() {
   echo "travis_fold:start:angular-rxjs-chat"
