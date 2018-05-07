@@ -1,4 +1,4 @@
-# ng-book 2: The Complete Guide to Angular 4 Sample Code
+# ng-book 2: The Complete Guide to Angular 6 Sample Code
 
 ## Organization
 
@@ -25,3 +25,7 @@ We're still writing updates the book and this code. If you have any feedback on 
 Cheers!
 
 Nate, Ari, and the ng-book 2 team
+
+
+# PDF or Mobi
+If you want this book , please send email to nilinli1994@gmail.com
