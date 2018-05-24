@@ -26,6 +26,3 @@ Cheers!
 
 Nate, Ari, and the ng-book 2 team
 
-
-# PDF or Mobi
-If you want this book , please send email to nilinli1994@gmail.com
