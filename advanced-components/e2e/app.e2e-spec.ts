@@ -9,7 +9,7 @@ describe('advanced-components App', () => {
 
   it('should load the page', () => {
     page.navigateTo();
-    expect(page.getHeaderText()).toEqual(`Angular 2 Advanced Components`);
+    expect(page.getHeaderText()).toEqual(`Angular Advanced Components`);
     expect(page.getIntroText()).toContain(`The ng-book team`);
   });
 

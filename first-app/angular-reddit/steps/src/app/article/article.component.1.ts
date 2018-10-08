@@ -16,7 +16,7 @@ export class ArticleComponent implements OnInit {
   link: string;
 
   constructor() {
-    this.title = 'Angular 2';
+    this.title = 'Angular';
     this.link = 'http://angular.io';
     this.votes = 10;
   }

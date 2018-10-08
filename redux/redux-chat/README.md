@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="src/assets/images/logos/Angular2ReduxChatHeaderImage.png" alt="Angular 2 Redux Chat" width="810" height="405"/>
+  <img src="src/assets/images/logos/Angular2ReduxChatHeaderImage.png" alt="Angular Redux Chat" width="810" height="405"/>
 </p>
 
-# Angular 2 Redux Chat [![Join the chat at https://gitter.im/ng-book/ng-book](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ng-book/ng-book?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Angular Redux Chat [![Join the chat at https://gitter.im/ng-book/ng-book](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ng-book/ng-book?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> An Angular 2 chat app using [Angular 2](https://angular.io/), [Redux](https://github.com/reactjs/redux), [Angular CLI](https://github.com/angular/angular-cli), [Webpack](https://webpack.github.io/), [TypeScript](http://www.typescriptlang.org/), Services, Injectables, [Karma](http://karma-runner.github.io/), Forms, [SCSS](http://sass-lang.com/), and [tslint](http://palantir.github.io/tslint/) by the [ng-book 2 team](https://ng-book.com/2)
+> An Angular chat app using [Angular](https://angular.io/), [Redux](https://github.com/reactjs/redux), [Angular CLI](https://github.com/angular/angular-cli), [Webpack](https://webpack.github.io/), [TypeScript](http://www.typescriptlang.org/), Services, Injectables, [Karma](http://karma-runner.github.io/), Forms, [SCSS](http://sass-lang.com/), and [tslint](http://palantir.github.io/tslint/) by the [ng-book 2 team](https://ng-book.com/2)
 
-This repo shows an example chat application using Redux and Angular 2. The goal is to show how to use the Redux data architecture pattern within Angular 2, using the core Redux library. It also features:
+This repo shows an example chat application using Redux and Angular. The goal is to show how to use the Redux data architecture pattern within Angular, using the core Redux library. It also features:
 
 * A step-by-step tutorial on how to write a [minimal Redux clone in Typescript](minimal/tutorial)
-* How to write a [minimal counter app with Redux and Angular 2](minimal)
+* How to write a [minimal counter app with Redux and Angular](minimal)
 * Webpack configuration with TypeScript, Karma, SCSS, and tslint
-* How to write injectable services in Angular 2
+* How to write injectable services in Angular
 * How to separate presentational vs. container components
 * Using action creators
 * How to compose reducers
@@ -20,7 +20,7 @@ This repo shows an example chat application using Redux and Angular 2. The goal 
 > ### Try the live [demo here](http://redux-chat.ng-book.com)
 
 <p align="center">
-  <img src="src/assets/images/readme/full-chat-preview.png" alt="Angular 2 Redux Chat" width="800" height="577"/>
+  <img src="src/assets/images/readme/full-chat-preview.png" alt="Angular Redux Chat" width="800" height="577"/>
 </p>
 
 
@@ -66,7 +66,7 @@ There are also three top-level components:
 * [`ChatWindow`](src/app/chat-window/chat-window.component.ts) - where we hold our current conversation
 
 <p align="center">
-  <img src="src/assets/images/readme/redux-chat-top-level-components.png" alt="Angular 2 Redux Chat" width="500" height="360"/>
+  <img src="src/assets/images/readme/redux-chat-top-level-components.png" alt="Angular Redux Chat" width="500" height="360"/>
 </p>
 
 ## Components Subscribe to the Store
@@ -133,7 +133,7 @@ In this app, we store the Messages in their respective Thread and we don't store
 Here's a screenshot using [Redux Devtools](https://github.com/gaearon/redux-devtools) of the initial state:
 
 <p align="center">
-  <img src="src/assets/images/readme/redux-chat-initial-state.png" alt="Angular 2 Redux Chat State Tree" width="800" />
+  <img src="src/assets/images/readme/redux-chat-initial-state.png" alt="Angular Redux Chat State Tree" width="800" />
 </p>
 
 
@@ -145,7 +145,7 @@ This app implements a few simple chat bots. For instance:
 * Reversing bot
 * Waiting bot
 
-<img src="src/assets/images/readme/redux-chat-echo-bot.png" alt="Angular 2 Redux Chat Bots" width="346" height="348"/>
+<img src="src/assets/images/readme/redux-chat-echo-bot.png" alt="Angular Redux Chat Bots" width="346" height="348"/>
 
 <div style="clear:both"></div>
 
@@ -191,17 +191,17 @@ This repository contains a step-by-step tutorial on how to build a minimal-redux
   <img src="src/assets/images/readme/minimal-redux-ts.png" alt="Minimal Redux in TypeScript" width="800"/>
 </p>
 
-## Minimal Angular 2 Redux Integration
+## Minimal Angular Redux Integration
 
-This repository also contains an example of a minimal integration of Redux with Angular 2 to build a counter app. You can also read about how to build this project [here at the ng-book blog](#).
+This repository also contains an example of a minimal integration of Redux with Angular to build a counter app. You can also read about how to build this project [here at the ng-book blog](#).
 
 <p align="center">
-  <img src="src/assets/images/readme/working-counter-app.png" alt="Minimal Redux and Angular 2 Counter" width="800"/>
+  <img src="src/assets/images/readme/working-counter-app.png" alt="Minimal Redux and Angular Counter" width="800"/>
 </p>
 
 ## Series
 
-This repo is part of a series of projects that discuss data architecture with Angular 2. You can find this same project implemented with Observable streams instead of Redux here:
+This repo is part of a series of projects that discuss data architecture with Angular. You can find this same project implemented with Observable streams instead of Redux here:
 
 * [`angular2-rxjs-chat`](https://github.com/ng-book/angular2-rxjs-chat)
 
@@ -228,7 +228,7 @@ ___
 
 This repo was written and is maintained by the [ng-book 2](https://ng-book.com/2) team. In the book we talk about each line of code in this app and explain why it's there and how it works.
 
-This app is only one of several apps we have in the book. If you're looking to learn Angular 2, there's no faster way than by spending a few hours with ng-book 2.
+This app is only one of several apps we have in the book. If you're looking to learn Angular, there's no faster way than by spending a few hours with ng-book 2.
 
 <div style="clear:both"></div>
 

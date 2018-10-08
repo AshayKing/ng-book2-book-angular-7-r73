@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor() {
     this.articles = [
-      new Article('Angular 2', 'http://angular.io', 3),
+      new Article('Angular', 'http://angular.io', 3),
       new Article('Fullstack', 'http://fullstack.io', 2),
       new Article('Angular Homepage', 'http://angular.io', 1),
     ];

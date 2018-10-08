@@ -9,7 +9,7 @@ describe('angular2-reddit App', function() {
 
   it('should have the header', () => {
     page.navigateTo();
-    expect(page.getHeaderText()).toEqual('Angular 2 Simple Reddit');
+    expect(page.getHeaderText()).toEqual('Angular Simple Reddit');
   });
 
   it('should allow voting', () => {

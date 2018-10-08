@@ -31,6 +31,6 @@ describe('ng-book HTTP Example App', () => {
     page.navigateTo();
 
     page.search('cats');
-    expect(page.getSearchText()).toContain(`cute`);
+    expect(page.getSearchText()).toContain(`funny`);
   });
 });

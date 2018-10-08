@@ -16,7 +16,7 @@ export class ArticleComponent implements OnInit {
 
   constructor() {
     this.article = new Article(
-      'Angular 2',
+      'Angular',
       'http://angular.io',
       10);
   }

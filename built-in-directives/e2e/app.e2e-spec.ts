@@ -9,7 +9,7 @@ describe('built-in-directives App', () => {
 
   it('should load the page', () => {
     page.navigateTo();
-    expect(page.getHeaderText()).toEqual(`Angular 2 Built-in Directives`);
+    expect(page.getHeaderText()).toEqual(`Angular Built-in Directives`);
     expect(page.getIntroText()).toContain(`The ng-book team`);
   });
 
