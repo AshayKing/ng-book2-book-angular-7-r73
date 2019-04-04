@@ -7,7 +7,7 @@ load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
 
 # @test "upgrade-hybrid unit tests pass" {
 #   cd $DIR
-#   run ng test --single-run
+#   run ng test --watch=false --single-run
 #   assert_output --partial 'SUCCESS'
 # }
 

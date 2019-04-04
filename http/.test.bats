@@ -7,7 +7,7 @@ load "${NGBOOK_ROOT}/scripts/bats-assert/load.bash"
 
 @test "http unit tests pass" {
   cd $DIR
-  run ng test
+  run ng test --watch=false
   assert_output --partial 'SUCCESS'
 }
 
